@@ -23,10 +23,10 @@ class UsuarioService:
         }, current_app.config['SECRET_KEY'], algorithm='HS256')
 
         return {
-            "message": "Login exitoso", 
             "id_usuario": usuario.id_usuario,
-            "token": token, 
-            "nombre": usuario.nombre
+            "nombre": usuario.nombre,
+            "token": token,
+            "hospital_id": usuario.hospital_id
         }, 200
 
     @staticmethod
