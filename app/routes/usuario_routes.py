@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from app.services.usuario_service import UsuarioService
+from app.services.usuario_services import UsuarioService
 
 # Definir el blueprint para las rutas de usuario
 usuario_bp = Blueprint('usuario', __name__)

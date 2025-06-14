@@ -18,6 +18,8 @@ pip install Flask SQLAlchemy Flask-Migrate psycopg2
 
 pip install PyJWT
 
+pip install simpy numpy pandas matplotlib
+
 ```
 ### crear bd en pgAdmin4 sin agregar tablas
 

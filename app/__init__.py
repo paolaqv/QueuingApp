@@ -3,6 +3,7 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import os
+
  
 db = SQLAlchemy()
 migrate = Migrate()
@@ -20,5 +21,8 @@ def create_app():
     
     from app.models import (Usuario, Queue, Hospital)
 
+
+    from app.routes.simulation_routes import simulation_bp
+    app.register_blueprint(simulation_bp)
 
     return app
