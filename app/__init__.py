@@ -23,7 +23,9 @@ def create_app():
 
 
     from app.routes.simulation_routes import simulation_bp
+    from app.routes.hospital_routes   import hospital_bp
     app.register_blueprint(simulation_bp)
+    app.register_blueprint(hospital_bp)
 
     from app.routes import register_routes
     register_routes(app)
