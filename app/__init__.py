@@ -13,7 +13,7 @@ def create_app():
     app = Flask(__name__)
 
     # Configuración de la app
-    CORS(app, origins="http://localhost:5173", methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], allow_headers=["Content-Type", "Authorization"])
+    CORS(app, resources={r"/*": {"origins": "http://localhost:8080"}}, supports_credentials=True)
     app.config.from_object('app.config.Config')
 
     db.init_app(app)
@@ -25,4 +25,6 @@ def create_app():
     from app.routes.simulation_routes import simulation_bp
     app.register_blueprint(simulation_bp)
 
+    from app.routes import register_routes
+    register_routes(app)
     return app

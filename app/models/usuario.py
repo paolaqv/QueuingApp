@@ -8,4 +8,5 @@ class Usuario(db.Model):
     email = db.Column(db.String(70), nullable=False)
     telefono = db.Column(db.String(20), nullable=False)
     contrasenia = db.Column(db.String(255), nullable=False)
-
+    hospital_id = db.Column(db.Integer, db.ForeignKey('hospital.id_hospital'))
+    hospital = db.relationship('Hospital', backref='usuario')
