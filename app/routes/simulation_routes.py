@@ -43,6 +43,8 @@ def simulate_endpoint():
         }
         with open(file_path, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=2)
+        
+
 
         current_app.logger.info(f"Saved simulation output to {file_path}")
 
