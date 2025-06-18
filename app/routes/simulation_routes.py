@@ -60,6 +60,7 @@ def simulate_endpoint():
         # 7) Devolvemos también el id_queue recién creado
         return jsonify({
             'metrics': metrics,
+            'records': records, 
             'file_name': fn,
             'queue_id': q.id_queue
         })
