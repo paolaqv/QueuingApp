@@ -1,6 +1,6 @@
 import os
 import json
-from flask import Blueprint, jsonify, current_app
+from flask import Blueprint, request, jsonify, current_app
 from datetime import datetime
 from app import db
 from app.models.hospital import Hospital
@@ -53,3 +53,27 @@ def list_hospitals():
         })
 
     return jsonify(result)
+
+
+@hospital_bp.route('/', methods=['POST'])
+def create_hospital():
+    """
+    Crea un nuevo hospital.
+    JSON body: { nombre: str, ubicacion: str }
+    """
+    data = request.get_json(force=True)
+    nombre    = data.get('nombre', '').strip()
+    ubicacion = data.get('ubicacion', '').strip()
+
+    if not nombre or not ubicacion:
+        return jsonify(error="Los campos 'nombre' y 'ubicacion' son obligatorios"), 400
+
+    try:
+        h = Hospital(nombre=nombre, ubicacion=ubicacion)
+        db.session.add(h)
+        db.session.commit()
+        return jsonify(h.to_dict()), 201
+    except Exception as e:
+        current_app.logger.exception("Error creando hospital")
+        db.session.rollback()
+        return jsonify(error=str(e)), 500

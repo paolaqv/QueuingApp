@@ -10,3 +10,11 @@ class Usuario(db.Model):
     contrasenia = db.Column(db.String(255), nullable=False)
     hospital_id = db.Column(db.Integer, db.ForeignKey('hospital.id_hospital'))
     hospital = db.relationship('Hospital', backref='usuario')
+
+    def to_dict(self):
+        return {
+            'id'        : self.id_usuario,
+            'nombre'    : self.nombre,
+            'email'     : self.email,
+            'hospital_id': self.hospital_id
+        }
